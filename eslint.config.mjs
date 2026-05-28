@@ -44,6 +44,22 @@ const eslintConfig = defineConfig([
       'simple-import-sort/exports': 'warn', // turn export sort to warn
 
       'prettier/prettier': 'warn', // turn prettier error in warning
+
+      '@typescript-eslint/no-unused-vars': [
+        // set a role to ignores the no used vars in case of first letter '_'
+        'warn',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+        },
+      ],
+      '@typescript-eslint/no-empty-object-type': [
+        'warn',
+        {
+          allowInterfaces: 'always',
+          allowObjectTypes: 'always',
+        },
+      ],
     },
   },
 ])
