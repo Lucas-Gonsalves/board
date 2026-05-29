@@ -1,5 +1,6 @@
 import { ArchiveIcon, MessageCircleIcon, ThumbsUpIcon } from 'lucide-react'
 
+import { Button } from '@/components/button'
 import { Card } from '@/components/card'
 import { Section } from '@/components/sections'
 
@@ -26,21 +27,15 @@ export default function Home() {
                 <Card.Title>Add credit card</Card.Title>
               </Card.Header>
               <Card.Footer>
-                <button
-                  type="button"
-                  className="text-navy-100 bg-navy-600 flex cursor-pointer items-center gap-2 rounded-lg px-2.5 py-1"
-                >
+                <Button type="button">
                   <ThumbsUpIcon className="size-3" />
                   <span className="text-sm">12</span>
-                </button>
+                </Button>
 
-                <button
-                  type="button"
-                  className="text-navy-100 bg-navy-600 flex cursor-pointer items-center gap-2 rounded-lg px-2.5 py-1"
-                >
+                <Button type="button">
                   <MessageCircleIcon className="size-3" />
                   <span className="text-sm">12</span>
-                </button>
+                </Button>
               </Card.Footer>
             </Card.Root>
           </Section.Content>
