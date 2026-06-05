@@ -4,7 +4,13 @@ import { Button } from '@/components/button'
 import { Card } from '@/components/card'
 import { Section } from '@/components/sections'
 
-export default function Home() {
+interface BoardProps {
+  searchParams: Promise<{ q?: string }>
+}
+
+export default function Board({ searchParams }: BoardProps) {
+  const { q } = searchParams
+
   return (
     <main className="grid flex-1 grid-cols-4 items-stretch gap-5">
       <Section.Root>
