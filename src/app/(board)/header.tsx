@@ -1,6 +1,6 @@
 'use client'
 
-import { LoaderIcon, LogInIcon, SearchIcon } from 'lucide-react'
+import { Loader2Icon, LogInIcon, SearchIcon } from 'lucide-react'
 import Image from 'next/image'
 import { debounce, parseAsString, useQueryState } from 'nuqs'
 import { ChangeEvent } from 'react'
@@ -53,7 +53,7 @@ export function Header() {
             title="Cancel"
             className="bg-navy-700 border-navy-500 flex size-8 items-center justify-center rounded-full border"
           >
-            <LoaderIcon className="text-navy-200 size-3.5 animate-spin" />
+            <Loader2Icon className="text-navy-200 size-3.5 animate-spin" />
           </div>
         ) : session?.user ? (
           <button
