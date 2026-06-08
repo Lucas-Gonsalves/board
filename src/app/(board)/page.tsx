@@ -3,7 +3,8 @@ import { Metadata } from 'next'
 
 import { Button } from '@/components/button'
 import { Card } from '@/components/card'
-import { Section } from '@/components/sections'
+import { Section } from '@/components/section'
+import { listIssues } from '@/http/list-issues'
 
 interface BoardProps {
   searchParams: Promise<{ q?: string }>
@@ -16,7 +17,12 @@ export const metadata: Metadata = {
 export default async function Board({ searchParams }: BoardProps) {
   const { q } = await searchParams
 
-  console.log(q)
+  const issues = await listIssues()
+
+  const issueBacklogLenght = issues.backlog.length
+  const issueTodoLenght = issues.todo.length
+  const issueInProgressLenght = issues.in_progress.length
+  const issueDoneLenght = issues.done.length
 
   return (
     <main className="grid flex-1 grid-cols-4 items-stretch gap-5">
@@ -27,27 +33,128 @@ export default async function Board({ searchParams }: BoardProps) {
             Backlog
           </Section.Title>
 
-          <Section.IssueCount>16</Section.IssueCount>
+          <Section.IssueCount>{issueBacklogLenght}</Section.IssueCount>
         </Section.Header>
 
         <Section.Content>
-          <Card.Root href="/">
-            <Card.Header>
-              <Card.Number>ECO-001</Card.Number>
-              <Card.Title>Add credit card</Card.Title>
-            </Card.Header>
-            <Card.Footer>
-              <Button type="button">
-                <ThumbsUpIcon className="size-3" />
-                <span className="text-sm">12</span>
-              </Button>
+          {issues.backlog.map((issue) => (
+            <Card.Root href="/" key={`key_of_issue_backlog_#${issue.id}`}>
+              <Card.Header>
+                <Card.Number>ECO-{issue.issueNumber}</Card.Number>
+                <Card.Title>{issue.title}</Card.Title>
+              </Card.Header>
+              <Card.Footer>
+                <Button type="button">
+                  <ThumbsUpIcon className="size-3" />
+                  <span className="text-sm">12</span>
+                </Button>
 
-              <Button type="button">
-                <MessageCircleIcon className="size-3" />
-                <span className="text-sm">12</span>
-              </Button>
-            </Card.Footer>
-          </Card.Root>
+                <Button type="button">
+                  <MessageCircleIcon className="size-3" />
+                  <span className="text-sm">12</span>
+                </Button>
+              </Card.Footer>
+            </Card.Root>
+          ))}
+        </Section.Content>
+      </Section.Root>
+
+      <Section.Root>
+        <Section.Header>
+          <Section.Title>
+            <ArchiveIcon className="size-3" />
+            To-do
+          </Section.Title>
+
+          <Section.IssueCount>{issueTodoLenght}</Section.IssueCount>
+        </Section.Header>
+
+        <Section.Content>
+          {issues.todo.map((issue) => (
+            <Card.Root href="/" key={`key_of_issue_todo_#${issue.id}`}>
+              <Card.Header>
+                <Card.Number>ECO-{issue.issueNumber}</Card.Number>
+                <Card.Title>{issue.title}</Card.Title>
+              </Card.Header>
+              <Card.Footer>
+                <Button type="button">
+                  <ThumbsUpIcon className="size-3" />
+                  <span className="text-sm">12</span>
+                </Button>
+
+                <Button type="button">
+                  <MessageCircleIcon className="size-3" />
+                  <span className="text-sm">12</span>
+                </Button>
+              </Card.Footer>
+            </Card.Root>
+          ))}
+        </Section.Content>
+      </Section.Root>
+
+      <Section.Root>
+        <Section.Header>
+          <Section.Title>
+            <ArchiveIcon className="size-3" />
+            In Progress
+          </Section.Title>
+
+          <Section.IssueCount>{issueInProgressLenght}</Section.IssueCount>
+        </Section.Header>
+
+        <Section.Content>
+          {issues.todo.map((issue) => (
+            <Card.Root href="/" key={`key_of_issue_in_progress_#${issue.id}`}>
+              <Card.Header>
+                <Card.Number>ECO-{issue.issueNumber}</Card.Number>
+                <Card.Title>{issue.title}</Card.Title>
+              </Card.Header>
+              <Card.Footer>
+                <Button type="button">
+                  <ThumbsUpIcon className="size-3" />
+                  <span className="text-sm">12</span>
+                </Button>
+
+                <Button type="button">
+                  <MessageCircleIcon className="size-3" />
+                  <span className="text-sm">12</span>
+                </Button>
+              </Card.Footer>
+            </Card.Root>
+          ))}
+        </Section.Content>
+      </Section.Root>
+
+      <Section.Root>
+        <Section.Header>
+          <Section.Title>
+            <ArchiveIcon className="size-3" />
+            Done
+          </Section.Title>
+
+          <Section.IssueCount>{issueDoneLenght}</Section.IssueCount>
+        </Section.Header>
+
+        <Section.Content>
+          {issues.todo.map((issue) => (
+            <Card.Root href="/" key={`key_of_issue_done_#${issue.id}`}>
+              <Card.Header>
+                <Card.Number>ECO-{issue.issueNumber}</Card.Number>
+                <Card.Title>{issue.title}</Card.Title>
+              </Card.Header>
+              <Card.Footer>
+                <Button type="button">
+                  <ThumbsUpIcon className="size-3" />
+                  <span className="text-sm">12</span>
+                </Button>
+
+                <Button type="button">
+                  <MessageCircleIcon className="size-3" />
+                  <span className="text-sm">12</span>
+                </Button>
+              </Card.Footer>
+            </Card.Root>
+          ))}
         </Section.Content>
       </Section.Root>
     </main>
