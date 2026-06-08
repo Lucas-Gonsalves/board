@@ -9,7 +9,12 @@ import { Input } from '@/components/input'
 interface SearchInputProps extends ComponentProps<'input'> {}
 
 export function SearchInput({ ...props }: SearchInputProps) {
-  const [search, setSearch] = useQueryState('q', parseAsString.withDefault(''))
+  const [search, setSearch] = useQueryState(
+    'q',
+    parseAsString.withDefault('').withOptions({
+      shallow: false,
+    }),
+  )
 
   function handleSearchUpdate(event: ChangeEvent<HTMLInputElement>) {
     setSearch(event.target.value, {

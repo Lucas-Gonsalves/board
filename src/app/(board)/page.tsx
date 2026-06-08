@@ -17,7 +17,9 @@ export const metadata: Metadata = {
 export default async function Board({ searchParams }: BoardProps) {
   const { q } = await searchParams
 
-  const issues = await listIssues()
+  const issues = await listIssues({
+    search: q,
+  })
 
   const issueBacklogLenght = issues.backlog.length
   const issueTodoLenght = issues.todo.length
@@ -37,25 +39,31 @@ export default async function Board({ searchParams }: BoardProps) {
         </Section.Header>
 
         <Section.Content>
-          {issues.backlog.map((issue) => (
-            <Card.Root href="/" key={`key_of_issue_backlog_#${issue.id}`}>
-              <Card.Header>
-                <Card.Number>ECO-{issue.issueNumber}</Card.Number>
-                <Card.Title>{issue.title}</Card.Title>
-              </Card.Header>
-              <Card.Footer>
-                <Button type="button">
-                  <ThumbsUpIcon className="size-3" />
-                  <span className="text-sm">12</span>
-                </Button>
+          {issueBacklogLenght === 0 ? (
+            <div className="flex items-center justify-center py-8 text-center">
+              <p className="text-navy-300 text-sm">No issues matching your filters</p>
+            </div>
+          ) : (
+            issues.backlog.map((issue) => (
+              <Card.Root href="/" key={`key_of_issue_backlog_#${issue.id}`}>
+                <Card.Header>
+                  <Card.Number>ECO-{issue.issueNumber}</Card.Number>
+                  <Card.Title>{issue.title}</Card.Title>
+                </Card.Header>
+                <Card.Footer>
+                  <Button type="button">
+                    <ThumbsUpIcon className="size-3" />
+                    <span className="text-sm">12</span>
+                  </Button>
 
-                <Button type="button">
-                  <MessageCircleIcon className="size-3" />
-                  <span className="text-sm">12</span>
-                </Button>
-              </Card.Footer>
-            </Card.Root>
-          ))}
+                  <Button type="button">
+                    <MessageCircleIcon className="size-3" />
+                    <span className="text-sm">12</span>
+                  </Button>
+                </Card.Footer>
+              </Card.Root>
+            ))
+          )}
         </Section.Content>
       </Section.Root>
 
@@ -70,25 +78,31 @@ export default async function Board({ searchParams }: BoardProps) {
         </Section.Header>
 
         <Section.Content>
-          {issues.todo.map((issue) => (
-            <Card.Root href="/" key={`key_of_issue_todo_#${issue.id}`}>
-              <Card.Header>
-                <Card.Number>ECO-{issue.issueNumber}</Card.Number>
-                <Card.Title>{issue.title}</Card.Title>
-              </Card.Header>
-              <Card.Footer>
-                <Button type="button">
-                  <ThumbsUpIcon className="size-3" />
-                  <span className="text-sm">12</span>
-                </Button>
+          {issueTodoLenght === 0 ? (
+            <div className="flex items-center justify-center py-8 text-center">
+              <p className="text-navy-300 text-sm">No issues matching your filters</p>
+            </div>
+          ) : (
+            issues.todo.map((issue) => (
+              <Card.Root href="/" key={`key_of_issue_todo_#${issue.id}`}>
+                <Card.Header>
+                  <Card.Number>ECO-{issue.issueNumber}</Card.Number>
+                  <Card.Title>{issue.title}</Card.Title>
+                </Card.Header>
+                <Card.Footer>
+                  <Button type="button">
+                    <ThumbsUpIcon className="size-3" />
+                    <span className="text-sm">12</span>
+                  </Button>
 
-                <Button type="button">
-                  <MessageCircleIcon className="size-3" />
-                  <span className="text-sm">12</span>
-                </Button>
-              </Card.Footer>
-            </Card.Root>
-          ))}
+                  <Button type="button">
+                    <MessageCircleIcon className="size-3" />
+                    <span className="text-sm">12</span>
+                  </Button>
+                </Card.Footer>
+              </Card.Root>
+            ))
+          )}
         </Section.Content>
       </Section.Root>
 
@@ -103,25 +117,31 @@ export default async function Board({ searchParams }: BoardProps) {
         </Section.Header>
 
         <Section.Content>
-          {issues.todo.map((issue) => (
-            <Card.Root href="/" key={`key_of_issue_in_progress_#${issue.id}`}>
-              <Card.Header>
-                <Card.Number>ECO-{issue.issueNumber}</Card.Number>
-                <Card.Title>{issue.title}</Card.Title>
-              </Card.Header>
-              <Card.Footer>
-                <Button type="button">
-                  <ThumbsUpIcon className="size-3" />
-                  <span className="text-sm">12</span>
-                </Button>
+          {issueInProgressLenght === 0 ? (
+            <div className="flex items-center justify-center py-8 text-center">
+              <p className="text-navy-300 text-sm">No issues matching your filters</p>
+            </div>
+          ) : (
+            issues.in_progress.map((issue) => (
+              <Card.Root href="/" key={`key_of_issue_in_progress_#${issue.id}`}>
+                <Card.Header>
+                  <Card.Number>ECO-{issue.issueNumber}</Card.Number>
+                  <Card.Title>{issue.title}</Card.Title>
+                </Card.Header>
+                <Card.Footer>
+                  <Button type="button">
+                    <ThumbsUpIcon className="size-3" />
+                    <span className="text-sm">12</span>
+                  </Button>
 
-                <Button type="button">
-                  <MessageCircleIcon className="size-3" />
-                  <span className="text-sm">12</span>
-                </Button>
-              </Card.Footer>
-            </Card.Root>
-          ))}
+                  <Button type="button">
+                    <MessageCircleIcon className="size-3" />
+                    <span className="text-sm">12</span>
+                  </Button>
+                </Card.Footer>
+              </Card.Root>
+            ))
+          )}
         </Section.Content>
       </Section.Root>
 
@@ -136,25 +156,31 @@ export default async function Board({ searchParams }: BoardProps) {
         </Section.Header>
 
         <Section.Content>
-          {issues.todo.map((issue) => (
-            <Card.Root href="/" key={`key_of_issue_done_#${issue.id}`}>
-              <Card.Header>
-                <Card.Number>ECO-{issue.issueNumber}</Card.Number>
-                <Card.Title>{issue.title}</Card.Title>
-              </Card.Header>
-              <Card.Footer>
-                <Button type="button">
-                  <ThumbsUpIcon className="size-3" />
-                  <span className="text-sm">12</span>
-                </Button>
+          {issueDoneLenght === 0 ? (
+            <div className="flex items-center justify-center py-8 text-center">
+              <p className="text-navy-300 text-sm">No issues matching your filters</p>
+            </div>
+          ) : (
+            issues.done.map((issue) => (
+              <Card.Root href="/" key={`key_of_issue_done_#${issue.id}`}>
+                <Card.Header>
+                  <Card.Number>ECO-{issue.issueNumber}</Card.Number>
+                  <Card.Title>{issue.title}</Card.Title>
+                </Card.Header>
+                <Card.Footer>
+                  <Button type="button">
+                    <ThumbsUpIcon className="size-3" />
+                    <span className="text-sm">12</span>
+                  </Button>
 
-                <Button type="button">
-                  <MessageCircleIcon className="size-3" />
-                  <span className="text-sm">12</span>
-                </Button>
-              </Card.Footer>
-            </Card.Root>
-          ))}
+                  <Button type="button">
+                    <MessageCircleIcon className="size-3" />
+                    <span className="text-sm">12</span>
+                  </Button>
+                </Card.Footer>
+              </Card.Root>
+            ))
+          )}
         </Section.Content>
       </Section.Root>
     </main>
