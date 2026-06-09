@@ -45,7 +45,7 @@ export default async function Board({ searchParams }: BoardProps) {
             </div>
           ) : (
             issues.backlog.map((issue) => (
-              <Card.Root href="/" key={`key_of_issue_backlog_#${issue.id}`}>
+              <Card.Root href={`/issues/${issue.id}`} key={`key_of_issue_backlog_#${issue.id}`}>
                 <Card.Header>
                   <Card.Number>ECO-{issue.issueNumber}</Card.Number>
                   <Card.Title>{issue.title}</Card.Title>
@@ -84,7 +84,7 @@ export default async function Board({ searchParams }: BoardProps) {
             </div>
           ) : (
             issues.todo.map((issue) => (
-              <Card.Root href="/" key={`key_of_issue_todo_#${issue.id}`}>
+              <Card.Root href={`/issues/${issue.id}`} key={`key_of_issue_todo_#${issue.id}`}>
                 <Card.Header>
                   <Card.Number>ECO-{issue.issueNumber}</Card.Number>
                   <Card.Title>{issue.title}</Card.Title>
@@ -123,7 +123,7 @@ export default async function Board({ searchParams }: BoardProps) {
             </div>
           ) : (
             issues.in_progress.map((issue) => (
-              <Card.Root href="/" key={`key_of_issue_in_progress_#${issue.id}`}>
+              <Card.Root href={`/issues/${issue.id}`} key={`key_of_issue_in_progress_#${issue.id}`}>
                 <Card.Header>
                   <Card.Number>ECO-{issue.issueNumber}</Card.Number>
                   <Card.Title>{issue.title}</Card.Title>
@@ -162,7 +162,7 @@ export default async function Board({ searchParams }: BoardProps) {
             </div>
           ) : (
             issues.done.map((issue) => (
-              <Card.Root href="/" key={`key_of_issue_done_#${issue.id}`}>
+              <Card.Root href={`/issues/${issue.id}`} key={`key_of_issue_done_#${issue.id}`}>
                 <Card.Header>
                   <Card.Number>ECO-{issue.issueNumber}</Card.Number>
                   <Card.Title>{issue.title}</Card.Title>
