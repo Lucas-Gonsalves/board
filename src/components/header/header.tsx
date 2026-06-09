@@ -1,7 +1,11 @@
 import { AuthButton } from './auth-button'
 import { SearchInput } from './search-input'
 
-export function Header() {
+interface HeaderProps {
+  children?: React.ReactNode
+}
+
+function Root({ children }: HeaderProps) {
   return (
     <header className="mx-auto flex w-full max-w-225 items-center justify-between">
       <div className="space-y-1">
@@ -11,10 +15,13 @@ export function Header() {
         </p>
       </div>
 
-      <div className="flex items-center gap-4">
-        <SearchInput />
-        <AuthButton />
-      </div>
+      <div className="flex items-center gap-4">{children}</div>
     </header>
   )
+}
+
+export const Header = {
+  Root,
+  AuthButton,
+  SearchInput,
 }
