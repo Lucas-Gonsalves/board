@@ -1,5 +1,3 @@
-import { setTimeout } from 'node:timers/promises'
-
 import { CommentsListResponseSchema } from '@/api/routes/list-issue-comments'
 import { clientEnv } from '@/env'
 
@@ -8,8 +6,6 @@ interface ListIssuesCommentsParams {
 }
 
 export async function listIssuesComments({ issueId }: ListIssuesCommentsParams) {
-  await setTimeout(2000)
-
   const url = new URL(`/api/issues/${issueId}/comments`, clientEnv.NEXT_PUBLIC_API_URL)
 
   const response = await fetch(url)

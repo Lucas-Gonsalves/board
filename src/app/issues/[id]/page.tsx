@@ -1,9 +1,10 @@
-import { ArchiveIcon, MoveLeftIcon, ThumbsUpIcon } from 'lucide-react'
+import { ArchiveIcon, MessageCirclePlusIcon, MoveLeftIcon, ThumbsUpIcon } from 'lucide-react'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { Suspense } from 'react'
 
 import { Button } from '@/components/button'
+import { Input } from '@/components/input'
 import { getIssue } from '@/http/get-issue'
 
 import { IssueCommentsList, IssueCommentsListSkeleton } from './issue-comments-list'
@@ -66,7 +67,16 @@ export default async function IssuePage({ params }: IssuePageProps) {
       <div className="flex flex-col gap-2">
         <span className="font-semibold">Comments</span>
 
-        <form action=""></form>
+        <form className="relative w-full">
+          <Input className="bg-navy-700 h-9 w-full pr-24" placeholder="Leave a comment..." />
+          <button
+            type="submit"
+            className="absolute top-1/2 right-3 flex -translate-y-1/2 cursor-pointer items-center gap-2 text-xs text-indigo-400 hover:text-indigo-300 disabled:opacity-50"
+          >
+            Publish
+            <MessageCirclePlusIcon className="size-3" />
+          </button>
+        </form>
 
         <div className="mt-3">
           <Suspense fallback={<IssueCommentsListSkeleton />}>
