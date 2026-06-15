@@ -8,7 +8,6 @@ export default function BoardLayout({
   return (
     <div className="mx-auto flex h-dvh w-full max-w-405 flex-col gap-8 p-10">
       <Header.Root>
-        <Header.SearchInput />
         <Header.AuthButton />
       </Header.Root>
       {children}
