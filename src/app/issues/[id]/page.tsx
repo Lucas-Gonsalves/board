@@ -8,7 +8,7 @@ import { Skeleton } from '@/components/skeleton'
 import { getIssue } from '@/http/get-issue'
 
 import { IssueCommentsList, IssueCommentsListSkeleton } from './issue-comments-list'
-import { IssueLikeButton } from './issue-like-button/issue-like-button'
+import { IssueLikeButton } from './issue-like-button'
 
 interface IssuePageProps {
   params: Promise<{ id: string }>
